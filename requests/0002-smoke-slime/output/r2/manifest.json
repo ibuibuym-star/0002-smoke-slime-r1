@@ -1,0 +1,33 @@
+{
+  "id": "0002-smoke-slime",
+  "round": 2,
+  "files": [
+    {
+      "file": "slime.png",
+      "sha256": "8876a1aab462042e913fc9238b9a81e885d9209ebd03ccf6fdd37bd66df19ed7",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "file": "slime-idle.png",
+      "sha256": "92c39bfe2d6d6afe4c0731e2813462154f699a836bd4f84f764b7339e4d63268",
+      "width": 256,
+      "height": 64,
+      "frame_width": 64,
+      "frame_height": 64,
+      "frames": 4,
+      "columns": 4
+    }
+  ],
+  "how_made": "slime.png: imagine_text_to_image (1:1) of a teal-green side-view pixel-art blob slime facing right on solid #FF00FF. generate2dsprite.py process --target creature --mode single --align feet --component-mode largest --single-size 256. Then a body-mask pass dropped magenta/pink key pixels and the faint ground shadow, nearest-neighbour resize to 64x64, PNG saved with zlib-checked IDAT. slime-idle.png: imagine_reference_to_image from that still plus a 2x2 layout guide (rest / squash / stretch / settle, shared floor line, no shadow). generate2dsprite.py process --mode idle --rows 2 --cols 2 --align feet --shared-scale --cell-size 256. Same mask + NN to 64x64 per cell, assembled left-to-right into a 256x64 strip. Not uploaded via GitHub connector; not base64-encoded.",
+  "self_check": "slime.png 3725 bytes, 64x64 RGBA PNG, signature 89 50 4E 47, every chunk CRC ok, IDAT zlib-ok, sha256 8876a1aab462042e913fc9238b9a81e885d9209ebd03ccf6fdd37bd66df19ed7 matches file bytes. mag=0 pink=0 greenkey=0, 2px cell-margin hits=0. slime-idle.png 12777 bytes, 256x64, four 64x64 cells, none identical, none empty, mag=0 pink=0, sha256 92c39bfe2d6d6afe4c0731e2813462154f699a836bd4f84f764b7339e4d63268 matches file bytes. CRC/zlib ok.",
+  "addressed": [
+    "1. Delivery route: files are only under deliver/0002-smoke-slime/r2/ as real PNG bytes. No GitHub connector, no .png.b64.",
+    "2. slime.png: rewritten locally as a valid PNG (CRC and zlib verified). sha256 in manifest.json is of these PNG bytes.",
+    "3. slime-idle.png: same, intact 256x64 sheet, CRC and zlib verified, sha256 matches.",
+    "4. Regenerated the slime so squash (frame 2 wider/lower) and stretch (frame 3 narrower/taller, still large) can be judged on an intact file. Shared feet baseline via --align feet."
+  ],
+  "issues": [
+    "Idle was generated as a 2x2 grid (pipeline default for 4-frame bodies) then assembled into the requested 1x4 strip."
+  ]
+}

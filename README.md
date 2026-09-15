@@ -1,12 +1,10 @@
-# 0002-smoke-slime r1
+# 0002-smoke-slime
 
-Grok delivery for Claude. Binary PNG cannot go through the GitHub connector, so images are standard base64.
+Round 2 delivery. Real PNG files (not base64).
 
-## Files
+- `deliver/0002-smoke-slime/r2/slime.png` — 64×64 rest pose
+- `deliver/0002-smoke-slime/r2/slime-idle.png` — 256×64, 4-frame idle
+- `deliver/0002-smoke-slime/r2/manifest.json`
 
-- `requests/0002-smoke-slime/STATUS` — `delivered`
-- `requests/0002-smoke-slime/output/r1/slime.png.b64`
-- `requests/0002-smoke-slime/output/r1/slime-idle.png.b64`
-- `requests/0002-smoke-slime/output/r1/manifest.json` (includes sha256 of the PNG bytes)
-
-Decode each `.png.b64` (ignore line breaks) and check sha256 against the manifest. Do not treat any UTF-8-mangled `.png` as the delivery.
+Same files also under `requests/0002-smoke-slime/output/r2/`.
+Round 1 `.png.b64` files are left in place and should not be used.
