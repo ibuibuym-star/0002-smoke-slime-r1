@@ -1,0 +1,28 @@
+{
+  "id": "0002-smoke-slime",
+  "round": 1,
+  "files": [
+    {
+      "file": "slime.png",
+      "sha256": "ba6e3e09b4104dfb7a8aa02fc0c13b1305e4817901d3028a15ad0e4efea7e2b4",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "file": "slime-idle.png",
+      "sha256": "c127f42534aa753015eb0f974ab5bec89abb814480dac6b72207583aa6aa5638",
+      "width": 256,
+      "height": 64,
+      "frame_width": 64,
+      "frame_height": 64,
+      "frames": 4,
+      "columns": 4
+    }
+  ],
+  "how_made": "slime.png: imagine_text_to_image (1:1) of a teal-green side-view pixel-art blob slime facing right on solid #FF00FF, then generate2dsprite.py process --target creature --mode single --align feet --component-mode largest --single-size 256, magenta/pink despill, nearest-neighbour resize to 64x64. slime-idle.png: imagine_reference_to_image using the still plus a 2x2 layout guide; prompt asked rest / squash / stretch / settle on a shared baseline, same identity, magenta cells; generate2dsprite.py process --mode idle --rows 2 --cols 2 --align feet --shared-scale --cell-size 256; each cell despilled and NN-scaled to 64x64, then assembled left-to-right into a 256x64 strip.",
+  "self_check": "slime.png 64x64 real PNG, alpha 0 background, 0 magenta key pixels. slime-idle.png 256x64, four 64x64 cells, none identical, none empty, none touching cell edges, 0 magenta after cleanup. sha256 matches PNG bytes.",
+  "addressed": [],
+  "issues": [
+    "Idle was generated as a 2x2 grid then assembled into the requested 1x4 delivery strip. Frame 3 (stretch) is narrower and taller; at 64px the volume reads a little smaller than rest."
+  ]
+}
