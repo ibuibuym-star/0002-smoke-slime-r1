@@ -3,31 +3,17 @@
   "round": 3,
   "files": [
     {
-      "file": "hero-slime.png",
-      "sha256": "7e3b56301cc1b3f4032828bf98f008fb748492f2581dcef1667b53b76c8cacc3",
+      "file": "hero-slime.txt",
       "width": 64,
       "height": 64,
-      "note": "female hero covered in teal blob slimes, 64x64 RGBA pixel sprite"
+      "format": "palette-row",
+      "note": "female hero covered in teal blob slimes"
     },
     {
-      "file": "hero-slime.png.b64",
-      "source": "hero-slime.png",
-      "encoding": "base64",
-      "sha256_of_decoded_png": "7e3b56301cc1b3f4032828bf98f008fb748492f2581dcef1667b53b76c8cacc3"
-    },
-    {
-      "file": "hero-slime.svg",
-      "width": 64,
-      "height": 64,
-      "note": "pixel replica of hero-slime.png"
+      "file": "decode.py",
+      "note": "python3 decode.py -> hero-slime.png"
     }
   ],
-  "how_made": "Imagine text-to-image of a right-facing female fantasy hero sprite with teal-green blob slimes on head/shoulders/torso/boot, hot-pink key background. Keyed pink/magenta, cropped to opaque bbox, nearest-neighbour fit into 64x64 with 2px margin and feet-aligned, 24-color quantize on opaque pixels only, binary alpha.",
-  "self_check": "hero-slime.png 3452 bytes, 64x64 RGBA PNG, sha256 7e3b56301cc1b3f4032828bf98f008fb748492f2581dcef1667b53b76c8cacc3. Background alpha 0. No leftover hot-pink key pixels.",
-  "addressed": [
-    "New r3 asset: 64x64 female hero covered in slimes."
-  ],
-  "issues": [
-    "GitHub connector content field is text, so the raster is stored as hero-slime.png.b64 plus an SVG replica. Decode with base64 -d."
-  ]
+  "how_made": "Imagine text-to-image of a right-facing female fantasy hero with teal blob slimes on head, shoulders, torso and boot. Hot-pink key removed, cropped, nearest-neighbour to 64x64, 23-color palette, binary alpha. Encoded as palette + 64 character rows because the GitHub connector cannot carry raw PNG bytes reliably.",
+  "self_check": "hero-slime.txt: 1 palette line (23 hex colors) + 64 rows of length 64. '.' is transparent. decode.py rebuilds a 64x64 RGBA PNG matching the generated sprite."
 }
