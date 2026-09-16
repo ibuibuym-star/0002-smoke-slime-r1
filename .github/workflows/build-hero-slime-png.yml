@@ -1,0 +1,36 @@
+name: build-hero-slime-png
+
+on:
+  push:
+    paths:
+      - "deliver/0002-smoke-slime/r3/hero-slime.txt"
+      - "deliver/0002-smoke-slime/r3/decode.py"
+      - ".github/workflows/build-hero-slime-png.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pillow
+        run: pip install --quiet pillow
+      - name: Decode sprite to PNG
+        run: python3 deliver/0002-smoke-slime/r3/decode.py
+      - name: Commit PNG if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deliver/0002-smoke-slime/r3/hero-slime.png
+          if git diff --cached --quiet; then
+            echo "png unchanged"
+          else
+            git commit -m "r3: add generated hero-slime.png (64x64)"
+            git push
+          fi

@@ -3,17 +3,22 @@
   "round": 3,
   "files": [
     {
+      "file": "hero-slime.png",
+      "width": 64,
+      "height": 64,
+      "note": "female hero covered in teal blob slimes, 64x64 RGBA"
+    },
+    {
       "file": "hero-slime.txt",
       "width": 64,
       "height": 64,
-      "format": "palette-row",
-      "note": "female hero covered in teal blob slimes"
+      "format": "palette-row"
     },
     {
       "file": "decode.py",
       "note": "python3 decode.py -> hero-slime.png"
     }
   ],
-  "how_made": "Imagine text-to-image of a right-facing female fantasy hero with teal blob slimes on head, shoulders, torso and boot. Hot-pink key removed, cropped, nearest-neighbour to 64x64, 23-color palette, binary alpha. Encoded as palette + 64 character rows because the GitHub connector cannot carry raw PNG bytes reliably.",
-  "self_check": "hero-slime.txt: 1 palette line (23 hex colors) + 64 rows of length 64. '.' is transparent. decode.py rebuilds a 64x64 RGBA PNG matching the generated sprite."
+  "how_made": "Imagine text-to-image of a right-facing female fantasy hero with teal blob slimes. Keyed hot-pink, nearest-neighbour to 64x64, 23-color palette. Text source is committed via GitHub connector; PNG is built by .github/workflows/build-hero-slime-png.yml because the connector cannot store raw PNG bytes.",
+  "self_check": "decode.py writes a 64x64 RGBA PNG. GitHub Actions commits that file to deliver/0002-smoke-slime/r3/hero-slime.png."
 }
